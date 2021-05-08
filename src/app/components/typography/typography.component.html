@@ -1,0 +1,78 @@
+<div class="section " style="margin-right:100px ;">
+  <div>
+
+    <div class="row">
+      <div class="col-md-3" *ngFor="let veh of lst| paginate: { itemsPerPage: 8, currentPage: p }"
+        style="padding-left: 60px;">
+        <div class="card " style="width: 18rem;background-color:brown;">
+          <img class="card-img-top" [src]="transform(veh.IMAGE)" alt="Rounded Image" class="img-rounded img-responsive"
+            style="width: 100%">
+
+          <div class="card-body" style="color:hsl(34, 84%, 58%)  ">
+            <h5 class="card-title" style="color:#FAEBD7">{{veh.MODELE}}</h5>
+            <p class="card-text" style="color:#FAEBD7  ">{{veh.DESCRIPTION}}</p>
+            <p class="card-text" style="color:#FAEBD7  ">{{veh.PRIX}} DT / Jour</p>
+
+
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title">Demande de Location</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form role="form" #form="ngForm" (ngSubmit)="postContrat(form,veh.MATRICULE)" autocomplete="off">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cin</label>
+                    <input type="text" class="form-control" name="cin" [(ngModel)]="cin">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom</label>
+                    <input type="text" class="form-control" name="nom" [(ngModel)]="nom">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Prenom</label>
+                    <input type="text" class="form-control" name="prenom" [(ngModel)]="prenom">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" name="adr" [(ngModel)]="adr">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Numero de telephone</label>
+                    <input type="text" class="form-control" name="numTel" [(ngModel)]="numTel">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Date debut</label>
+                    <input type="date" class="form-control" name="dateDeb" [(ngModel)]="dateDeb">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Date fin</label>
+                    <input type="date" class="form-control" name="dateFin" [(ngModel)]="dateFin">
+                  </div><br>
+                  <div class="modal-footer">
+                    <div>
+                      <input class="btn login_btn" type="submit" value="Valider">
+                    </div>
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Annuler</button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+            <button class="btn" style="background-color:#F5F5DC;color:#DEB887;margin-left:35% ;  "
+              (click)="openVerticallyCentered(content)">Louer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list" style="text-align: center;">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant">
+    </pagination-controls>
+  </div>
