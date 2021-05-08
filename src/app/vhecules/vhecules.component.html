@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+
+
+
+        <button mat-raised-button (click)="openDialog()" type="submit" class="btn btn-primary pull-meduim">Ajouter une
+            véhicule</button>
+        <div class="card-body">
+            <div class="row"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3" *ngFor="let assu of lst | paginate: { itemsPerPage: 8, currentPage: p }">
+
+                <div class="alert ">
+                    <i class="fa fa-check fa-lg" *ngIf="assu.ETAT == 'Dispo'"></i>
+                    <i class="fa fa-user-check fa-lg" *ngIf="assu.ETAT == 'Louer'"></i>
+                    <i class="fas fa-tools fa-lg" *ngIf="assu.ETAT == 'Maintenance'"></i>
+
+                    <a href="javascript:void(0)"><i class="material-icons" (click)="deleteVh(assu.MATRICULE)"
+                            style="float: right;color: red;">close</i></a>
+
+                    <a href="javascript:void(0)"><i class="material-icons" (click)="updtDialog(assu)"
+                            style="float: right;color:darkcyan;">create</i></a>
+
+                    <div style="text-align: center;">
+                        <span id="mat" style="font-weight: bold;">{{assu.MATRICULE}}</span>
+                    </div>
+
+
+                    <img class="img" [src]="transform(assu.IMAGE)" style="text-align: center;"
+                        class="rounded mx-auto d-block" height="150" width="200" />
+
+                    <span id="mod"><i class="fa fa-car"></i>&nbsp;&nbsp;{{assu.MODELE}}</span>
+
+                    <span id="prix"><i class="fa fa-money-bill-wave"></i>&nbsp;&nbsp;{{assu.PRIX}} DT / jour</span>
+                    <span id="des"><i class="fa fa-list"></i>&nbsp;&nbsp;{{assu.DESCRIPTION}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="list" style="text-align: center;">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant">
+            </pagination-controls>
+        </div>
+    </div>
+</div>

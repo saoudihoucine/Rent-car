@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <button mat-raised-button (click)="openDialog()" type="submit" class="btn btn-primary pull-meduim">Ajouter un(e)
+            employé(e)</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste des employés</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        CIN
+                                    </th>
+                                    <th>
+                                        NOM
+                                    </th>
+                                    <th>
+                                        PRENOM
+                                    </th>
+                                    <th>
+                                        ADRESSE
+                                    </th>
+                                    <th>
+                                        NUMTEL
+                                    </th>
+                                    <th>
+                                        EMAIL
+                                    </th>
+                                    <th>
+                                        Supprimer
+                                    </th>
+                                    <th>
+                                        Modifier
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let emp of lstEmp | paginate: { itemsPerPage: 5, currentPage: p }">
+                                        <td>
+                                            {{emp.CIN_EMP}}
+                                        </td>
+                                        <td>
+                                            {{emp.NOM}}
+                                        </td>
+                                        <td>
+                                            {{emp.PRENOM}}
+                                        </td>
+                                        <td>
+                                            {{emp.ADRESSE}}
+                                        </td>
+                                        <td>
+                                            {{emp.NUMTEL}}
+                                        </td>
+                                        <td>
+                                            {{emp.EMAIL}}
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" (click)="deleteEmp(emp.CIN_EMP)">
+                                                <i class="fa fa-trash fa-2x" style="color: tomato;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" (click)="updtDialog(emp)">
+                                                <i class="fa fa-user-edit fa-2x"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list" style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant">
+        </pagination-controls>
+    </div>
+</div>

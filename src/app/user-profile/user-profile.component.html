@@ -1,0 +1,66 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="javascript:void(0)">
+              <img class="img" src="./assets/img/faces/marc.jpg" />
+            </a>
+          </div>
+          <div class="card-body">
+            <div class="card-body">
+              <form role="form" #form="ngForm" (ngSubmit)="modProfile(form)" autocomplete="off">
+                <div class="row">
+                  <div class="col-md-5" style="text-align: center;">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="CIN" name="cin" [(ngModel)]="cin" ngModel maxlength="8" readonly />
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="NOM" type="text" name="nom" [(ngModel)]="nom" required ngModel />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="PRENOM" type="text" name="prenom" [(ngModel)]="prenom" required
+                        ngModel />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="ADRESSE" [(ngModel)]="adresse" type="text" name="adresse" required
+                        ngModel />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="NMERO TELPHONE" [(ngModel)]="numTel" type="text" name="numTel"
+                        required ngModel />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="EMAIL" [(ngModel)]="email" type="email" name="email" required ngModel
+                        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button mat-raised-button class="btn pull-right" type="submit"
+                  [disabled]="form.invalid">Modifier</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

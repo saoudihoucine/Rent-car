@@ -1,0 +1,11 @@
+<h3>UNE DEMANDE D'ALLOCATION PAR :</h3>
+<p>Période: <b>{{demande.date_debut}} ===> {{demande.date_fin}}</b></p>
+<p>Cin: <b>{{demande.cin_client}}</b></p>
+<p>Prenom: <b>{{demande.pren_client}}</b></p>
+<p>Nom: <b>{{demande.nom_client}}</b></p>
+<p>Num de Telephone: <b>{{demande.num_client}}</b></p>
+<p>Email: <b>{{demande.email_client}}</b></p>
+<p>Adresse: <b>{{demande.adrs_client}}</b></p>
+<p>Véhicules : <b>{{demande.matricule}}</b></p>
+<button mat-raised-button class="btn btn-danger pull-right" (click)="refuser()">Refuser</button>
+<button mat-raised-button class="btn pull-right" (click)="accpeter()">Accepter</button>

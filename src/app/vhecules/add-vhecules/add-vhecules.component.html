@@ -1,0 +1,85 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Ajouter une véhicule</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                <img [src]="url" *ngIf="url" class="rounded" width="300" height="250" />
+                <img src="./assets/img/unknownCar.png" class="rounded" *ngIf="!url" width="250" height="250" />
+              </div>
+              <div class="col-md-5">
+                <div #screen>
+                  <img src="./assets/img/unknownQRCode.png" *ngIf="!values" class="rounded" width="240" height="250" />
+                  <qrcode [qrdata]="values" *ngIf="values" [heigth]="240" [width]="250" [errorCorrectionLevel]="'M'">
+                  </qrcode>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <form role="form" #form="ngForm" (ngSubmit)="addVH(form)" autocomplete="off">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput #box (keyup)="onKey(box.value)" placeholder="Matricule (*** TU ****)"
+                      name="matricule" required ngModel />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="number" min="40" max="10000.00" step="10" placeholder="Prix en DT" name="prix"
+                      required ngModel />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Modèle" name="modele" required ngModel />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <label class="btn btn-danger btn-round">
+                    <input type="file" style="display: none;" (change)="selectFile($event)" name="img" required
+                      ngModel />
+                    Choisir une image
+                  </label>
+                  <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Déscription" name="desc" required ngModel></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+              <button mat-raised-button class="btn btn-danger pull-right" (click)="closeModal()">Annuler</button>
+              <button mat-raised-button [disabled]="form.invalid" class="btn pull-right" type="submit">Ajouter</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+
+        <div id="download" style="display: none;">
+          <img #canvas width="240" height="250">
+          <a #downloadLink></a>
+        </div>

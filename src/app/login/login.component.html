@@ -1,0 +1,61 @@
+<br><br><br><br><br><br><br><br>
+
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="assets\img\person.png" class="brand_logo" alt="Logo">
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center form_container">
+
+                <form role="form" #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off">
+                    <div class="input-group ">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><span class="material-icons">alternate_email</span></span>
+                        </div>
+                        <input #emailControl="ngModel" class="form-control" placeholder="  Email" name="Email"
+                            type="email" required [(ngModel)]="email" ngModel [email]="true">
+                    </div><br>
+                    <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)"
+                        class="text-danger">
+                        <div *ngIf="emailControl.errors.required">
+                            <small>Saisir votre Email</small>
+                        </div>
+                        <div *ngIf="emailControl.errors.email">
+
+                            <small>Email invalide</small>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><span class="material-icons">vpn_key</span></span>
+                        </div>
+                        <input #passControl="ngModel" class="form-control" placeholder="  Mot de passe" name="password"
+                            type="password" required minlength="6" [(ngModel)]="password">
+                    </div>
+                    <div *ngIf="passControl.invalid && (passControl.dirty || passControl.touched)" class="text-danger">
+                        <div *ngIf="passControl.errors.required">
+                            <small>Saisir votre mot de passe</small>
+                        </div>
+                        <div *ngIf="passControl.errors.minlength">
+                            <small> Mot de passe au moins 6 caractères</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <input class="btn login_btn" [disabled]="form.invalid" type="submit" value="Se connecter">
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links">
+                    <a href="#">Mot de passe oublié ?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

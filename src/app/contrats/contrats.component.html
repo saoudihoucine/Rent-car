@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Liste des contrats</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        NUMERO
+                                    </th>
+                                    <th>
+                                        DATE DEBUT
+                                    </th>
+                                    <th>
+                                        DATE FIN
+                                    </th>
+                                    <th>
+                                        VEHICULE
+                                    </th>
+                                    <th>
+                                        CLIENT
+                                    </th>
+                                    <th>
+                                        CRÉE PAR
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ctr of lstCtr| paginate: { itemsPerPage: 7, currentPage: p }">
+                                        <td>
+                                            {{ctr.IDCONTR}}
+                                        </td>
+                                        <td>
+                                            {{ctr.DATEDEB}}
+                                        </td>
+                                        <td>
+                                            {{ctr.DATEFIN}}
+                                        </td>
+                                        <td>
+                                            {{ctr.VehiculeMATRICULE}}
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" (mouseover)="openDialog(ctr.Client)"
+                                                (mouseout)="changeText=false">
+                                                {{ctr.Client.NOM}} {{ctr.Client.PRENOM}} 
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{ctr.Employe.NOM}} {{ctr.Employe.PRENOM}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list" style="text-align: center;">
+        <pagination-controls (pageChange)="p = $event" previousLabel="Précédent" nextLabel="Suivant">
+        </pagination-controls>
+    </div>
+</div>
