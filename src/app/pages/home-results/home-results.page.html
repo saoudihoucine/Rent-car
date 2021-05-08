@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">Home</ion-text>
+      </ion-text>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="vehicule == undefined">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <ion-button expand="full" shape="round" fill="outline" (click)="scanCode()">
+    Scan Code
+  </ion-button>
+</div>
+  
+
+
+
+  <ion-card *ngIf="vehicule != undefined">
+    <img [src]="transform(vehicule.IMAGE)" />
+    <ion-card-header>
+      <ion-card-subtitle>{{ vehicule.MATRICULE }}</ion-card-subtitle>
+      <ion-card-title>{{ vehicule.MODELE }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ vehicule.PRIX }} DT/jour
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="primary" shape="round" fill="outline" (click)="scanCode()"*ngIf="vehicule != undefined">
+    Scan Code
+  </ion-button>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animated fadeInDown">
+    <ion-fab-button (click)="togglePopupMenu()" [disabled]="!vehicule">
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="apps"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="popup-menu">
+    <div class="popup-menu-overlay" [ngClass]="{'in': openMenu}"></div>
+    <div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+      <div class="popup-menu-item" (click)="changeEtat('Dispo',vehicule.MATRICULE)">
+        <ion-icon name="checkmark" slot="middle" size="large"></ion-icon>
+        <span>Dispo</span>
+      </div>
+      <div class="popup-menu-item" (click)="changeEtat('Maintenance',vehicule.MATRICULE)">
+        <ion-icon name="build" slot="middle" size="large"></ion-icon>
+        <span>Maintenance</span>
+      </div>
+      <div class="popup-menu-item" (click)="changeEtat('Louer',vehicule.MATRICULE)">
+        <ion-icon name="key" slot="middle" size="large"></ion-icon>
+        <span>Louer</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>
